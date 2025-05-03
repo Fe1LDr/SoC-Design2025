@@ -1,0 +1,39 @@
+default:
+  tags:
+    - sys_prog
+test:
+  stage: test
+  image: docker.io/hihidrdi/verif:h3
+  before_script:
+    - export LANG=C
+    - export XILINX_QEMU=~/qemu/build
+    - PATH="$PATH:/home/developer/sc-dt/riscv-gcc/bin/"
+  script:
+    - > 
+      robot -d build --listener snapshot/CoverageListener.py 
+      ./snapshot/design0/design0.robot
+      ./snapshot/design1/design1.robot
+      ./snapshot/design2/design2.robot
+      ./snapshot/design3/design3.robot
+      ./snapshot/design4/design4.robot
+      ./snapshot/design5/design5.robot
+      ./snapshot/design6/design6.robot
+      ./snapshot/design7/design7.robot
+      ./snapshot/design8/design8.robot
+      ./snapshot/design9/design9.robot
+      ./snapshot/design10/design10.robot
+      ./snapshot/design11/design11.robot
+      ./snapshot/design12/design12.robot
+      ./snapshot/design13/design13.robot
+      ./snapshot/design14/design14.robot
+
+  artifacts:
+        when: always
+        name: robot_art
+        paths:
+          - ./build/log.html
+          - ./build/report.html
+          - ./test/*
+          - ./img/*
+          - ./src/*
+          - ./include/*

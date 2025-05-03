@@ -1,0 +1,10 @@
+.vscode/
+.fleet/
+.idea/
+
+**/build
+
+.env
+**.o
+logs
+sim.vcd
